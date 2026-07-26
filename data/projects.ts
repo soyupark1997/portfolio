@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: "Kanto — 필리핀 생활 필수 플랫폼",
     meta: "팀장 · 4인 팀 · 2026.05.28 ~ 07.07 (6주)",
     summary:
-      "필리핀 현지에 필요한 중고거래·구인구직·부동산·지도 기반 번개모임을 한 곳에서 제공하는 생활 플랫폼입니다.",
+      "필리핀 현지에 필요한 중고거래·구인구직·부동산·지도 기반 번개모임을 제공하는 생활 플랫폼입니다.",
     demoUrl: "https://kanto-iota.vercel.app",
     githubUrl: "https://github.com/soyupark1997/kanto",
     adminUrl: "https://kanto-iota.vercel.app/admin",
@@ -98,8 +98,7 @@ export const projects: Project[] = [
     id: "pokemon",
     title: "포켓몬 도감 — TypeScript 개인 프로젝트",
     meta: "개인 프로젝트",
-    summary:
-      "1~4세대 포켓몬 721마리 조회 및 배틀 승률 계산 기능을 제공하는 개인 프로젝트입니다.",
+    summary: "1~4세대 포켓몬 조회 및 배틀 기능을 제공하는 개인 프로젝트입니다.",
     demoUrl: "https://pokemon-battle.com",
     githubUrl: "https://github.com/soyupark1997/pokemon",
     image: "/image/pokemon.png",
