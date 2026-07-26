@@ -21,8 +21,7 @@ export const projects: Project[] = [
     id: "kanto",
     title: "Kanto — 필리핀 생활 필수 플랫폼",
     meta: "팀장 · 4인 팀 · 2026.05.28 ~ 07.07 (6주)",
-    summary:
-      "필리핀 현지에 필요한 중고거래·구인구직·부동산·지도 기반 번개모임을 제공하는 생활 플랫폼입니다.",
+    summary: "중고거래·구인구직·부동산·지도 기반 번개모임을 제공",
     demoUrl: "https://kanto-iota.vercel.app",
     githubUrl: "https://github.com/soyupark1997/kanto",
     adminUrl: "https://kanto-iota.vercel.app/admin",
