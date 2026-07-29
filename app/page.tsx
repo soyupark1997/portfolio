@@ -12,6 +12,26 @@ export default function Home() {
       {/* Contact / footer */}
       <footer id="contact" className="shrink-0 bg-gradient-to-b from-[#111111] to-black text-slate-300">
         <div className="max-w-5xl mx-auto px-6 py-2.5 text-center sm:py-6">
+          <a
+            href="/박소유_포트폴리오.pdf"
+            download="박소유_포트폴리오.pdf"
+            className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-slate-600 px-3 py-1.5 text-[11px] text-slate-200 transition-colors hover:border-slate-400 hover:bg-white/5 sm:mb-4 sm:px-4 sm:py-2 sm:text-sm"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5 sm:h-4 sm:w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 3v12" />
+              <path d="m7 10 5 5 5-5" />
+              <path d="M5 21h14" />
+            </svg>
+            포트폴리오 PDF 다운로드
+          </a>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <a
               href="https://github.com/soyupark1997"
