@@ -21,7 +21,8 @@ export const projects: Project[] = [
     id: "kanto",
     title: "Kanto — 필리핀 생활 필수 플랫폼",
     meta: "팀장 · 4인 팀 · 2026.05.28 ~ 07.07 (6주)",
-    summary: "중고거래·구인구직·부동산·지도 기반 번개모임을 제공",
+    summary:
+      "필리핀에서 3년간 호텔 매니저로 일하며 목격한 문제를, 6주 만에 결제까지 붙은 플랫폼으로 만들었습니다. 중고거래·구인구직·부동산·지도 기반 번개모임을 제공합니다.",
     demoUrl: "https://kanto-iota.vercel.app",
     githubUrl: "https://github.com/soyupark1997/kanto",
     adminUrl: "https://kanto-iota.vercel.app/admin",
@@ -39,7 +40,9 @@ export const projects: Project[] = [
     ],
     contributions: [
       "프로젝트 초기 세팅, 헤더 UI 전체 구현, 찜·공유·신고 공통 컴포넌트 설계",
-      "Xendit 기반 결제·정산 시스템 연동, 결제 중복 방지, 관리자 결제내역·KPI 대시보드 구축",
+      "팀 PR 병합·통합 관리자 역할 — 본인 주도 PR 15건 이상 + 타 팀원 PR 100건 이상 리뷰·병합 (39일간 본인 커밋 283건, 팀 전체 1,191건 중 약 24%)",
+      "구인구직 상세·찜·내 게시글·관리자 채팅관리·관리자 결제관리 페이지 최초 구현 (페이지별 기여도 55~68%, 팀 기여도 분석 보고서 기준)",
+      "Xendit 에스크로 결제·정산 연동 (Disbursement 지급, 정산 계좌 등록, 중복 결제 방지) 및 관리자 결제내역·KPI 대시보드 구축",
       "RLS 보안 정책 점검(익명 사용자 정보 노출 차단), Supabase 타입 자동생성 파이프라인, CI lint 게이트 구축",
       "AI 챗봇(RAG + Gemini·Groq·Cerebras 3단 모델 폴백) 구현 참여",
     ],
@@ -56,12 +59,23 @@ export const projects: Project[] = [
         issue: "결제 중복 요청",
         fix: "버튼 즉시 비활성화 + 서버 측 상태 확인 로직으로 중복 인보이스 방지",
       },
+      {
+        issue: "미읽음 카운트가 증가하지 않는 버그",
+        fix: "unread 컬럼 기본값 NULL로 인한 NULL+1=NULL 계산 오류 → 기본값 0으로 마이그레이션, increment_unread()에 COALESCE 처리 추가",
+      },
+      {
+        issue: "RLS 정책의 익명 사용자 정보 노출",
+        fix: "anon role에도 열려 있던 정책 발견 → 불필요한 정책 drop 후 인증 사용자 기준으로 재작성해 접근 범위 축소",
+      },
+      {
+        issue: "Google Maps APIProvider 중복 로드",
+        fix: "여러 컴포넌트가 각자 APIProvider를 import해 libraries 파라미터 충돌 → 앱 최상단에 싱글턴 배치, 하위는 useMap() 훅으로 접근",
+      },
     ],
     testAccount: {
-      label: "슈퍼어드민 계정",
-      id: "asdf1234@naver.com",
-      password: "asdf1234",
+      label: "데모 계정은 요청 시 제공드립니다",
     },
+    note: "soyupark1997@gmail.com",
   },
   {
     id: "SW칸타빌레",
@@ -91,7 +105,7 @@ export const projects: Project[] = [
         fix: "전 구간 try/catch + res.ok 체크 추가, 실패 시 사용자 안내",
       },
     ],
-    testAccount: { label: "관리자용", password: "8888" },
+    testAccount: { label: "데모 계정은 요청 시 제공드립니다" },
   },
   {
     id: "pokemon",
