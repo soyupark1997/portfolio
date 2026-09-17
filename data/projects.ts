@@ -3,8 +3,9 @@ export type Project = {
   title: string;
   meta: string;
   summary: string;
+  cardSummary?: string;
   demoUrl: string;
-  githubUrl: string;
+  githubUrl?: string;
   adminUrl?: string;
   image?: string;
   imagePosition?: string;
@@ -18,11 +19,59 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "doctorcharting",
+    title: "닥터차팅(DoctorCharting) — 간호 실무 차트 학습 앱",
+    meta: "외주 프로젝트 · 2인 팀(구현 담당) · 2026.08 ~ 진행중",
+    summary:
+      "간호학과 학생·신규 간호사를 위한 차트 학습 앱입니다. 실제 형식의 의무기록(EMR 차트)을 읽고 의학용어를 익히며 문제를 풀어 확인하는 3축 학습 구조(차트학습·용어학습·문제풀이)를 구현했습니다.",
+    cardSummary: "간호학과 학생·신규 간호사를 위한 차트 학습 앱입니다.",
+    demoUrl: "https://dcuser.revuplan.com",
+    adminUrl: "https://dcadmin.revuplan.com",
+    image: "/image/doctorcharting-poster.png",
+    color: "teal",
+    tags: [
+      "Vue 3",
+      "TypeScript",
+      "Laravel 13",
+      "Sanctum",
+      "MariaDB",
+      "Capacitor",
+      "Firebase Cloud Messaging",
+      "Tailwind CSS v4",
+    ],
+    contributions: [
+      "hwp 원고(15개 진료과) → Python 파서로 추출·정제해 진료과 15 · 질환 112 · 기록지 471 · 의학용어 8,801건 DB 적재, Laravel 13 + Sanctum API 27개 라우트 설계·구현",
+      "차트학습 UI(질환→기록지 유형 칩→본문 렌더 + 약어 자동 하이라이트·툴팁)를 목데이터에서 실 API 연동으로 전환",
+      "퀴즈·차트 문제 저작 기능 — chart_questions 테이블 및 CRUD API, 사용자 차트학습 하단 문제 섹션(30초 카운트다운 후 정답 공개) 구현, 문제 초안(퀴즈 430·차트문제 471건) 적재 스크립트 작성",
+      "FCM 푸시 Android 실발송 — 서비스 계정 JWT(RS256)를 직접 서명해 OAuth2 토큰을 발급하는 FcmSender 구현(외부 SDK 미사용), 쉘앱 토큰 수신부터 관리자 타겟 발송까지 실기기 E2E 검증. API 스펙 선작성 → 리뷰 → 구현 프로세스로 진행",
+      "FCM 푸시 iOS 대응 — Capacitor 쉘앱에 APNs→Firebase 브리지(AppDelegate.swift) 추가, 플랫폼이 항상 android로 저장되던 기존 버그 수정, 앱스토어 심사 요청까지 완료",
+      "FAQ 하드코딩 3문항을 DB 테이블 + 공개/관리자 API 5종(CRUD+순서변경) + 관리자 UI로 전환, Playwright E2E로 전 흐름 검증",
+      "게스트(비로그인) 콘텐츠 접근 제한, 1:1 문의 기능, DB 백업 크론 구축, 원고 대조 중 발견한 원본 데이터 오류 6건을 문서화해 발주사에 확인 요청",
+    ],
+    troubleshooting: [
+      {
+        issue: "php artisan migrate:fresh 오실행으로 로컬 DB 콘텐츠 테이블 전체 삭제",
+        fix: "스키마·마이그레이션·시드·파서·문제초안 순으로 복구, 이후 콘텐츠 테이블은 ALTER만 허용하고 migrate:fresh/refresh를 금지하는 규칙 확립",
+      },
+      {
+        issue: "hwp5txt로 추출 시 표 안의 내용이 누락됨",
+        fix: "hwp5proc의 XML 출력을 직접 파싱하는 방식으로 전환해 표 데이터 보존",
+      },
+      {
+        issue: "FCM 만료 토큰 처리 기준 불명확",
+        fix: "404(UNREGISTERED)만 삭제하고 400(INVALID_ARGUMENT)은 페이로드 버그 가능성이 있어 삭제하지 않도록 분리 처리",
+      },
+    ],
+    note: "발주사가 있는 외주 프로젝트라 관리자 계정 정보는 비공개입니다. 데모 계정은 요청 시 제공드립니다.",
+  },
+  {
     id: "kanto",
     title: "Kanto — 필리핀 생활 필수 플랫폼",
     meta: "팀장 · 4인 팀 · 2026.05.28 ~ 07.07 (6주)",
     summary:
       "필리핀에서 3년간 호텔 매니저로 일하며 목격한 문제를, 6주 만에 결제까지 붙은 플랫폼으로 만들었습니다. 중고거래·구인구직·부동산·지도 기반 번개모임을 제공합니다.",
+    cardSummary:
+      "필리핀 거주 한인을 위한 중고거래·구인구직·부동산·번개모임 통합 플랫폼입니다.",
     demoUrl: "https://kanto-iota.vercel.app",
     githubUrl: "https://github.com/soyupark1997/kanto",
     adminUrl: "https://kanto-iota.vercel.app/admin",
@@ -43,19 +92,10 @@ export const projects: Project[] = [
       "팀 리드 — 업무 분배·데드라인 설정, 팀 PR 병합·통합 관리자 역할 (본인 주도 PR 15건 이상 + 타 팀원 PR 100건 이상 리뷰·병합, 39일간 본인 커밋 283건, 팀 전체 1,191건 중 약 24%)",
       "구인구직 상세·찜·내 게시글·관리자 채팅관리·관리자 결제관리 페이지 최초 구현 (페이지별 기여도 55~68%, 팀 기여도 분석 보고서 기준)",
       "Xendit 에스크로 결제·정산 연동 (Disbursement 지급, 정산 계좌 등록, 중복 결제 방지) 및 관리자 결제내역·KPI 대시보드 구축",
-      "RLS 보안 정책 점검(익명 사용자 정보 노출 차단), Supabase 타입 자동생성 파이프라인, CI lint 게이트 구축",
-      "AI 챗봇 RAG 문서 작성 (3단 모델 폴백 구조 자체는 팀원 구현)",
-      "채팅 성능 개선 — Supabase 인덱스 4개 추가, 읽음 처리 로직 3쿼리→RPC 1회 통합, 채팅방 진입 API 3회 왕복→1회 통합, 메시지 SELECT에서 불필요한 transactions 조인 제거",
-      "메시지 전송 전 정지·차단 검증을 클라이언트→서버(Server Action)로 이전해 왕복 3회→1회로 단축, 채팅방 로딩 Skeleton UI 적용",
-      "VerifyAuthor 공통 컴포넌트 신설로 게시글 작성자 검증 로직 통합, EditButton/DeleteButton을 경로 주입 방식으로 일반화해 3개 도메인(중고거래·구인구직·부동산)에 재사용",
+      "채팅 성능 개선 — Supabase 인덱스 4개 추가, 읽음 처리 로직 3쿼리→RPC 1회 통합, 채팅방 진입 API 3회 왕복→1회 통합, 메시지 전송 전 정지·차단 검증을 클라이언트→서버로 이전",
       "이용약관 5개 페이지를 클라이언트 fetch에서 Notion API 서버 SSR + ISR(24시간 캐싱)로 전환 — 데스크탑 5페이지 전부 Performance 93~98점 → 100점, LCP 약 1.0s → 0.73s로 확정 개선",
-      "칸토고(/go) 페이지 Google Maps SDK 동적 로딩 적용 — 데스크탑 LCP 2.1s → 0.73s 개선. 배포 후 재측정에서 모바일 미개선을 확인하고 grep으로 코드 추적해 지연 로딩 컴포넌트가 실제로는 페이지에 연결되지 않은 죽은 코드였음을 직접 진단",
     ],
     troubleshooting: [
-      {
-        issue: "결제 웹훅 누락",
-        fix: "webhook 수신 경로 보강 + 결제완료 페이지 인보이스 상태 재검증 폴백 추가",
-      },
       {
         issue: "이미지 업로드 용량 과다",
         fix: "업로드 전 Canvas API로 1600px 리사이즈 + WebP 변환 적용 — 실측 203KB → 16.67KB (약 92% 감소, 12배 이상 압축)",
@@ -65,28 +105,12 @@ export const projects: Project[] = [
         fix: "auth.uid() 호출을 서브쿼리로 변경해 InitPlan 1회 평가로 개선 — EXPLAIN ANALYZE 실측 0.110ms → 0.050ms (약 55% 단축)",
       },
       {
-        issue: "결제 중복 요청",
-        fix: "버튼 즉시 비활성화 + 서버 측 상태 확인 로직으로 중복 인보이스 방지",
-      },
-      {
-        issue: "미읽음 카운트가 증가하지 않는 버그",
-        fix: "unread 컬럼 기본값 NULL로 인한 NULL+1=NULL 계산 오류 → 기본값 0으로 마이그레이션, increment_unread()에 COALESCE 처리 추가",
-      },
-      {
         issue: "RLS 정책의 익명 사용자 정보 노출",
         fix: "anon role에도 열려 있던 정책 발견 → 불필요한 정책 drop 후 인증 사용자 기준으로 재작성해 접근 범위 축소",
       },
       {
-        issue: "Google Maps APIProvider 중복 로드",
-        fix: "여러 컴포넌트가 각자 APIProvider를 import해 libraries 파라미터 충돌 → 앱 최상단에 싱글턴 배치, 하위는 useMap() 훅으로 접근 (2026-07-04)",
-      },
-      {
         issue: "칸토고 지도 SDK 지연 로딩이 배포 후 모바일에서 효과 없음",
         fix: "next/dynamic으로 지연 로딩 컴포넌트를 만들었지만 배포 후 재측정에서 모바일 TBT가 480ms→1999ms로 오히려 4배 악화됨을 발견 → grep으로 코드 추적한 결과 실제 페이지가 이 컴포넌트를 한 번도 import하지 않는 죽은 코드였음을 확인. 데스크탑은 LCP 2.1s→0.73s로 이미 개선되어 있었음",
-      },
-      {
-        issue: "채팅방 진입·읽음 처리 시 불필요한 DB 왕복",
-        fix: "채팅방 진입 API 3회 조회를 임베드 쿼리 1회로 통합, 읽음 처리(메시지+안읽음 카운트)를 Supabase RPC로 트랜잭션 통합, 메시지 전송 전 정지·차단 검증을 클라이언트에서 서버로 이전해 왕복 3회→1회로 단축, Supabase 인덱스 4개 추가",
       },
     ],
     testAccount: {
@@ -104,7 +128,7 @@ export const projects: Project[] = [
     demoUrl: "https://rawbeef-orcin.vercel.app",
     githubUrl: "https://github.com/soyupark1997/rawbeef",
     adminUrl: "https://rawbeef-orcin.vercel.app/admin",
-    image: "/image/rawbeef.jpg",
+    image: "/image/rawbeef-poster.png",
     color: "amber",
     tags: ["Vanilla JS", "Vite", "Tailwind CSS", "Fetch API", "JWT"],
     contributions: [

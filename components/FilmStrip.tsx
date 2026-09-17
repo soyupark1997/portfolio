@@ -110,11 +110,11 @@ function FilmFrame({
         <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_25px_rgba(0,0,0,0.65)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/10 to-black/35" />
         <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7">
-          <h3 className="mt-2 text-xl font-bold leading-snug text-white sm:text-2xl">
+          <h3 className="mt-2 break-keep text-xl font-bold leading-snug text-white sm:text-2xl">
             {project.title.split(" — ")[0]}
           </h3>
-          <p className="mt-1.5 line-clamp-2 text-xs text-stone-300 sm:text-sm">
-            {project.summary}
+          <p className="mt-1.5 line-clamp-2 break-keep text-xs text-stone-300 sm:text-sm">
+            {project.cardSummary ?? project.summary}
           </p>
           <p className="mt-3 text-[10px] font-medium tracking-wide text-amber-300/90 sm:text-xs">
             {project.tags.slice(0, 4).join("  ·  ")}

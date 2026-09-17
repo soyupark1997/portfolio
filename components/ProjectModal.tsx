@@ -126,14 +126,16 @@ export default function ProjectModal({
             >
               새 탭에서 열기 ↗
             </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-sm border border-white/20 px-4 py-2 text-sm font-semibold text-stone-200 transition-colors hover:border-white/50 hover:text-white"
-            >
-              GitHub 코드 보기
-            </a>
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm border border-white/20 px-4 py-2 text-sm font-semibold text-stone-200 transition-colors hover:border-white/50 hover:text-white"
+              >
+                GitHub 코드 보기
+              </a>
+            )}
             {project.adminUrl && (
               <a
                 href={project.adminUrl}
