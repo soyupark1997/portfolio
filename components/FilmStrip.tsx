@@ -80,7 +80,7 @@ export default function FilmStrip({ projects }: { projects: Project[] }) {
         <SprocketBar />
       </div>
 
-      {/* Desktop: static 2x2 grid, sized to always fit the viewport, no motion */}
+      {/* Desktop: static 1x4 row, equal cards and gaps, no motion */}
       <div className="film-grain night-sky relative hidden h-full w-full sm:flex sm:items-center sm:justify-center sm:p-3 lg:p-5">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {METEORS.map((m, i) => (
@@ -96,8 +96,8 @@ export default function FilmStrip({ projects }: { projects: Project[] }) {
             />
           ))}
         </div>
-        <div className="relative h-full w-full max-w-[1200px] rounded-2xl border border-white/10 bg-white/[0.03] p-3 lg:p-5">
-          <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-3 lg:gap-5">
+        <div className="relative w-full max-w-[1500px] rounded-2xl border border-white/10 bg-white/[0.03] p-3 lg:p-5">
+          <div className="grid w-full grid-cols-4 gap-4 lg:gap-5">
             {projects.map((p, i) => (
               <FilmFrame
                 key={p.id}
@@ -151,7 +151,7 @@ function FilmFrame({
   onClick: () => void;
 }) {
   return (
-    <div className="filmstrip-frame-gutter relative flex shrink-0 items-center bg-transparent sm:h-full sm:w-full">
+    <div className="filmstrip-frame-gutter relative flex shrink-0 items-center bg-transparent sm:h-auto sm:w-full">
       <span className="absolute left-[-9px] top-1/2 hidden -translate-y-1/2 -rotate-90 whitespace-nowrap text-[8px] font-mono tracking-[0.3em] text-white/30 sm:block">
         {String(index + 1).padStart(2, "0")} SOYU
       </span>
@@ -159,7 +159,7 @@ function FilmFrame({
         type="button"
         onClick={onClick}
         style={{ "--glow": GLOW_COLORS[project.color] } as CSSProperties}
-        className="group relative h-[38vh] w-[85vw] max-w-[380px] overflow-hidden rounded-sm bg-gradient-to-br from-stone-800 via-stone-900 to-black text-left ring-1 ring-inset ring-white/10 transition-all duration-300 [filter:sepia(0.12)_saturate(1.08)_contrast(1.04)] hover:-translate-y-1 hover:scale-105 focus-visible:scale-105 focus:outline-none sm:h-full sm:w-full shadow-[0_18px_36px_-16px_rgba(0,0,0,0.75),0_2px_0_rgba(255,255,255,0.04)_inset] hover:shadow-[0_28px_55px_-16px_rgba(0,0,0,0.8),0_0_50px_-8px_var(--glow)]"
+        className="group relative h-[38vh] w-[85vw] max-w-[380px] overflow-hidden rounded-sm bg-gradient-to-br from-stone-800 via-stone-900 to-black text-left ring-1 ring-inset ring-white/10 transition-all duration-300 [filter:sepia(0.12)_saturate(1.08)_contrast(1.04)] hover:-translate-y-1 hover:scale-105 focus-visible:scale-105 focus:outline-none sm:h-auto sm:w-full sm:aspect-[6/5] shadow-[0_18px_36px_-16px_rgba(0,0,0,0.75),0_2px_0_rgba(255,255,255,0.04)_inset] hover:shadow-[0_28px_55px_-16px_rgba(0,0,0,0.8),0_0_50px_-8px_var(--glow)]"
       >
         {project.image && (
           // eslint-disable-next-line @next/next/no-img-element
