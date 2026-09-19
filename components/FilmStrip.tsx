@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/data/projects";
 import ProjectModal from "./ProjectModal";
+
+const RESUME_DELAY_MS = 2000;
 
 const SPROCKET_COUNT_MOBILE = 18;
 const SPROCKET_COUNT_DESKTOP = 40;
@@ -15,7 +17,25 @@ const METEORS = [
 
 export default function FilmStrip({ projects }: { projects: Project[] }) {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout>>();
   const loopedProjects = [...projects, ...projects];
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      setIsPaused(true);
+      clearTimeout(resumeTimer.current);
+      resumeTimer.current = setTimeout(() => setIsPaused(false), RESUME_DELAY_MS);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      clearTimeout(resumeTimer.current);
+    };
+  }, []);
 
   return (
     <div className="film-grain night-sky filmstrip-shell h-full">
@@ -34,8 +54,11 @@ export default function FilmStrip({ projects }: { projects: Project[] }) {
         ))}
       </div>
       <SprocketBar />
-      <div className="filmstrip-viewport">
-        <div className="filmstrip-track">
+      <div ref={viewportRef} className="filmstrip-viewport">
+        <div
+          className="filmstrip-track"
+          style={{ animationPlayState: isPaused ? "paused" : "running" }}
+        >
           {loopedProjects.map((p, i) => (
             <FilmFrame
               key={`${p.id}-${i}`}

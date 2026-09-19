@@ -133,13 +133,16 @@ body {
   }
   .filmstrip-viewport {
     padding: 0.5rem 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
   .filmstrip-track {
     flex-direction: column;
     width: 100%;
     height: max-content;
     min-height: 100%;
-    animation: filmstrip-scroll-vertical 40s linear infinite;
+    animation: filmstrip-scroll-vertical 30s linear infinite;
   }
   .filmstrip-frame-gutter {
     border-width: 8px 0;
