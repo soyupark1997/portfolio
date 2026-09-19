@@ -1,5 +1,6 @@
 import { projects } from "@/data/projects";
 import FilmStrip from "@/components/FilmStrip";
+import SoyuBotChat from "@/components/SoyuBotChat";
 
 export default function Home() {
   return (
@@ -96,27 +97,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* 소유봇 floating button */}
-      <a
-        href="https://t.me/soyuring_bot"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="소유봇과 대화하기"
-        className="group fixed bottom-4 right-4 z-40 flex items-center gap-2 sm:bottom-6 sm:right-6"
-      >
-        <span className="hidden whitespace-nowrap rounded-full bg-black/85 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg ring-1 ring-white/10 transition-opacity duration-200 group-hover:opacity-100 sm:block">
-          소유봇과 대화하기
-        </span>
-        <span className="relative flex h-12 w-12 shrink-0 items-center justify-center sm:h-16 sm:w-16">
-          <span className="absolute inset-0 animate-ping rounded-full bg-purple-400/30" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/image/soyubot.jpg"
-            alt="소유봇"
-            className="relative h-full w-full rounded-full object-cover shadow-[0_8px_24px_rgba(0,0,0,0.55)] ring-2 ring-white/20 transition-transform duration-200 group-hover:scale-105"
-          />
-        </span>
-      </a>
+      <SoyuBotChat />
     </main>
   );
 }
