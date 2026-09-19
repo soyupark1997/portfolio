@@ -168,6 +168,10 @@ function FilmFrame({
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-70"
+          style={{ background: "radial-gradient(circle at 78% 28%, var(--glow), transparent 62%)" }}
+        />
         <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_25px_rgba(0,0,0,0.65)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/10 to-black/35" />
         <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-5 lg:p-6">
