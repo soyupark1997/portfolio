@@ -96,15 +96,17 @@ export default function FilmStrip({ projects }: { projects: Project[] }) {
             />
           ))}
         </div>
-        <div className="grid h-full w-full max-w-[1200px] grid-cols-2 grid-rows-2 gap-3 lg:gap-5">
-          {projects.map((p, i) => (
-            <FilmFrame
-              key={p.id}
-              project={p}
-              index={i}
-              onClick={() => setSelected(p)}
-            />
-          ))}
+        <div className="relative h-full w-full max-w-[1200px] rounded-2xl border border-white/10 bg-white/[0.03] p-3 lg:p-5">
+          <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-3 lg:gap-5">
+            {projects.map((p, i) => (
+              <FilmFrame
+                key={p.id}
+                project={p}
+                index={i}
+                onClick={() => setSelected(p)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
