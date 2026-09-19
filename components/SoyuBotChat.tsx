@@ -2,12 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const API_URL = "https://soyubot.onrender.com/api/chat";
+const API_URL = "https://soyubot.onrender.com/chat";
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
+
+function getSessionId() {
+  if (typeof window === "undefined") return "default";
+  const KEY = "soyubot-session-id";
+  let id = sessionStorage.getItem(KEY);
+  if (!id) {
+    id = crypto.randomUUID();
+    sessionStorage.setItem(KEY, id);
+  }
+  return id;
+}
 
 export default function SoyuBotChat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +27,11 @@ export default function SoyuBotChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const sessionIdRef = useRef<string>("default");
+
+  useEffect(() => {
+    sessionIdRef.current = getSessionId();
+  }, []);
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
@@ -25,8 +41,7 @@ export default function SoyuBotChat() {
     const text = input.trim();
     if (!text || isLoading) return;
 
-    const nextMessages: ChatMessage[] = [...messages, { role: "user", content: text }];
-    setMessages(nextMessages);
+    setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
     setError(null);
     setIsLoading(true);
@@ -35,7 +50,7 @@ export default function SoyuBotChat() {
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify({ message: text, sessionId: sessionIdRef.current }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "오류가 발생했어요.");
