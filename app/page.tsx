@@ -28,11 +28,11 @@ export default function Home() {
 
       {/* Contact / footer */}
       <footer id="contact" className="shrink-0 bg-gradient-to-b from-[#111111] to-black text-slate-300">
-        <div className="max-w-5xl mx-auto px-6 py-2.5 text-center sm:py-6">
+        <div className="max-w-5xl mx-auto px-6 py-2.5 text-center sm:py-3">
           <a
             href="/박소유_포트폴리오.pdf"
             download="박소유_포트폴리오.pdf"
-            className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-slate-600 px-3 py-1.5 text-[11px] text-slate-200 transition-colors hover:border-slate-400 hover:bg-white/5 sm:mb-4 sm:px-4 sm:py-2 sm:text-sm"
+            className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-slate-600 px-3 py-1.5 text-[11px] text-slate-200 transition-colors hover:border-slate-400 hover:bg-white/5 sm:mb-2 sm:px-4 sm:py-1.5 sm:text-sm"
           >
             <svg
               viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <p className="mt-3 text-xs text-slate-400 sm:mt-4 sm:text-sm">
+          <p className="mt-3 text-xs text-slate-400 sm:mt-2 sm:text-sm">
             <a href="mailto:soyupark1997@gmail.com" className="hover:text-slate-200">
               soyupark1997@gmail.com
             </a>
@@ -90,7 +90,7 @@ export default function Home() {
               010-7774-0699
             </a>
           </p>
-          <p className="mt-1.5 text-[10px] text-slate-500 sm:mt-3 sm:text-xs">
+          <p className="mt-1.5 text-[10px] text-slate-500 sm:mt-1 sm:text-xs">
             © {new Date().getFullYear()} Soyu Park
           </p>
         </div>

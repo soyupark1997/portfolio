@@ -10,15 +10,6 @@ body {
   background: #ffffff;
 }
 
-@keyframes filmstrip-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes filmstrip-scroll-vertical {
   from {
     transform: translateY(0);
@@ -147,33 +138,6 @@ body {
   .filmstrip-frame-gutter {
     border-width: 8px 0;
   }
-}
-
-@media (min-width: 640px) {
-  .filmstrip-shell {
-    flex-direction: column;
-  }
-  .filmstrip-sprocket {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.6rem 1.25rem;
-  }
-  .filmstrip-viewport {
-    padding: 0.5rem 0;
-  }
-  .filmstrip-track {
-    flex-direction: row;
-    width: max-content;
-    height: 100%;
-    animation: filmstrip-scroll 55s linear infinite;
-  }
-  .filmstrip-frame-gutter {
-    border-width: 0 10px;
-  }
-}
-
-.filmstrip-track:hover {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
