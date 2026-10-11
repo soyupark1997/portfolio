@@ -81,6 +81,24 @@ export default function Home() {
                 <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.76 1.84 5.19 4.6 6.58-.2.74-.73 2.7-.84 3.12-.13.52.19.51.4.37.17-.11 2.7-1.83 3.79-2.58.66.1 1.35.15 2.05.15 5.52 0 10-3.48 10-7.64C22 6.48 17.52 3 12 3z" />
               </svg>
             </a>
+            <a
+              href="https://canva.link/a2wdl1oqzer5aad"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="발표자료 1 보기"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-600 text-xs font-bold text-slate-300 transition-colors hover:border-teal-300 hover:text-teal-300 sm:h-10 sm:w-10 sm:text-sm"
+            >
+              1
+            </a>
+            <a
+              href="https://canva.link/bchc97dc33e6hc7"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="발표자료 2 보기"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-600 text-xs font-bold text-slate-300 transition-colors hover:border-teal-300 hover:text-teal-300 sm:h-10 sm:w-10 sm:text-sm"
+            >
+              2
+            </a>
           </div>
           <p className="mt-3 text-xs text-slate-400 sm:mt-2 sm:text-sm">
             <a href="mailto:soyupark1997@gmail.com" className="hover:text-slate-200">
